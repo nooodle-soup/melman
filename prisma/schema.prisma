@@ -17,25 +17,23 @@ enum Role {
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
+  id           String        @id @default(cuid())
   email        String        @unique
-  userId       String        @unique
   firstName    String
   lastName     String
   role         Role
   customerOf   Vendor[]
   appointments Appointment[]
 
-  @@index([userId])
+  @@index([id])
 }
 
 model Vendor {
-  id        Int    @id @default(autoincrement())
+  id        String @id @default(cuid())
   name      String
-  vendorId  String
   customers User[]
 
-  @@index([vendorId])
+  @@index([id])
 }
 
 enum Status {
@@ -44,11 +42,11 @@ enum Status {
 }
 
 model Appointment {
-  id           Int       @id @default(autoincrement())
+  id           String    @id @default(cuid())
   createdAt    DateTime  @default(now())
   appointed    Status
   reservedTime DateTime?
-  createdBy    User      @relation(fields: [creatorId], references: [userId])
+  createdBy    User      @relation(fields: [creatorId], references: [id])
   creatorId    String
 
   @@index([creatorId])

@@ -7,7 +7,7 @@ import {
 } from "~/components/ui/tabs"
 import Link from "next/link";
 import { CustomerList } from "./viewCustomers";
-import { AddCustomerForm, ProfileForm } from "./addCustomer";
+import { AddCustomerForm } from "./addCustomer";
 
 export default function CustomerPage() {
 
@@ -31,7 +31,6 @@ export default function CustomerPage() {
             <CustomerList />
           </TabsContent>
           <TabsContent value="add">
-            <ProfileForm />
             <AddCustomerForm />
           </TabsContent>
         </div>
