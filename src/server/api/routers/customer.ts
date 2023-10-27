@@ -11,9 +11,9 @@ export const customerRouter = createTRPCRouter({
       };
     }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    const customers = ctx.db.users.findMany();
-    return customers;
+  getAll: publicProcedure
+  .query(({ ctx }) => {
+    return ctx.db.user.findMany();
   }),
 
 });

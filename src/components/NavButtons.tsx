@@ -1,5 +1,5 @@
 'use client'
-import { SignInButton, useAuth, useClerk } from "@clerk/nextjs"
+import { SignInButton, useAuth, useClerk, useUser } from "@clerk/nextjs"
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react"
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 export const NavButtons = () => {
   const { isLoaded, isSignedIn } = useAuth();
+  const { user } = useUser();
   const { signOut } = useClerk();
   const router = useRouter();
 

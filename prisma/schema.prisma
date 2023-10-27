@@ -16,11 +16,26 @@ enum Role {
   ADMIN
 }
 
-model Users {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  name  String
-  role  Role
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  userId       String        @unique
+  firstName    String
+  lastName     String
+  role         Role
+  customerOf   Vendor[]
+  appointments Appointment[]
+
+  @@index([userId])
+}
+
+model Vendor {
+  id        Int    @id @default(autoincrement())
+  name      String
+  vendorId  String
+  customers User[]
+
+  @@index([vendorId])
 }
 
 enum Status {
@@ -28,12 +43,13 @@ enum Status {
   RESERVED
 }
 
-model Appointments {
+model Appointment {
   id           Int       @id @default(autoincrement())
   createdAt    DateTime  @default(now())
   appointed    Status
   reservedTime DateTime?
-  userId       Int
+  createdBy    User      @relation(fields: [creatorId], references: [userId])
+  creatorId    String
 
-  @@index([userId])
+  @@index([creatorId])
 }

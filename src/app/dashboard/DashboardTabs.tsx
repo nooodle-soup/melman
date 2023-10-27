@@ -16,7 +16,7 @@ export function DashboardTabs() {
             "secondarySquare"
         } className="text-lg py-6" asChild>
           <Link href="/dashboard/customers">
-            Customers
+            Manage Customers
           </Link>
         </Button>
         <Button variant={
@@ -27,7 +27,7 @@ export function DashboardTabs() {
             "secondarySquare"
         } className="py-6 text-lg" asChild>
           <Link href="/dashboard/appointments">
-            Appointments
+            Manage Appointments
           </Link>
         </Button>
       </div>
