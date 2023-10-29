@@ -30,7 +30,9 @@ model User {
 
 model Vendor {
   id        String @id @default(cuid())
+  vendorId  String @unique
   name      String
+  email     String @unique
   customers User[]
 
   @@index([id])
