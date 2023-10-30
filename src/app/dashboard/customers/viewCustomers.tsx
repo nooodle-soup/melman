@@ -21,15 +21,11 @@ export function CustomerList({ className, ...props }: CardProps) {
   };
 
   const { data, isLoading } = api.customer.getCustomersOfVendor.useQuery();
-  if (isLoading) {
-    return (<div><LoadingPage/></div>)
+  if (isLoading || !data) {
+    return (<div><LoadingPage /></div>)
   }
   return (
-    !data
-      ?
-      <div>Loading...</div>
-      :
-      !data.customers
+    !data.customers
       ?
       <div>No Customers</div>
       :

@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 export const NavButtons = () => {
   const { isLoaded, isSignedIn } = useAuth();
   const { user } = useUser();
-  console.log("user:", user);
   const { signOut } = useClerk();
   const router = useRouter();
 

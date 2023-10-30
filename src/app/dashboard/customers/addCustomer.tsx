@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import type { UseFormReturn } from "react-hook-form"
 import * as z from "zod"
+import isMobilePhone from "validator/lib/isMobilePhone";
 
 import { Button } from "~/components/ui/button"
 import {
@@ -23,7 +24,8 @@ const formSchema = z.object({
       message: "First name must be at least 2 characters.",
     }),
   lastName: z.string(),
-  email:    z.string().email()
+  email:    z.string().email(),
+  phoneNum: z.string().refine(isMobilePhone, { message: "Invalid Phone Number" })
 })
 
 type FormFields = z.infer<typeof formSchema>;
@@ -46,6 +48,12 @@ const formFields = [
     label: "E-mail",
     placeholder: "stretch@melman.org",
     description: "Customer's E-mail"
+  },
+  {
+    name: "phoneNum",
+    label: "Phone Number *",
+    placeholder: "1234567890",
+    description: "Customer's Phone Number"
   }
 
 ]
@@ -58,7 +66,8 @@ export function AddCustomerForm() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      email:    ""
+      email:    "",
+      phoneNum: ""
     },
   });
 

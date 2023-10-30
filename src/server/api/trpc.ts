@@ -59,7 +59,6 @@ export const createInnerTRPCContext = (opts: CreateContextOptions) => {
 export const createTRPCContext = (opts: { req: NextRequest }) => {
   const req = opts.req;
   const sesh = getAuth(req);
-  console.log("session user: ", sesh);
 
   const innerTRPCContext = createInnerTRPCContext({
     headers: opts.req.headers,
@@ -117,8 +116,6 @@ export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
 
 const userAuthEnforcer = t.middleware(async ({ ctx, next }) => {
-  console.log(ctx.currentUser);
-  console.log(!ctx.currentUser);
   if (!ctx.currentUser) {
     throw new TRPCError({
       code: "UNAUTHORIZED"
