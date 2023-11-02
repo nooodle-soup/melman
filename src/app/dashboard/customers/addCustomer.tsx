@@ -30,6 +30,8 @@ const formSchema = z.object({
 
 type FormFields = z.infer<typeof formSchema>;
 
+type ValidFormFieldNames = "firstName" | "lastName" | "email" | "phoneNum";
+
 const formFields = [
   {
     name: "firstName",
@@ -87,7 +89,7 @@ export function AddCustomerForm() {
           <FormField
             key={index}
             control={form.control}
-            name={element.name}
+            name={element.name as ValidFormFieldNames}
             render={({ field }) => (
               <FormItem className="space-y-0">
                 <FormLabel className="text-lg text-slate-200">{element.label}</FormLabel>
